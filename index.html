@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<!-- Sprache auf Portugiesisch (Brasilien) gesetzt -->
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sabella Antica Rosticceria</title>
+
+<!-- Google Fonts – Schriftarten werden extern geladen -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   RESET & CSS-VARIABLEN
+   Farben zentral hier ändern – wirkt sich auf die gesamte Seite aus
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --cream: #F5F0E8;       /* Cremeton – Haupttextfarbe */
+  --warm-white: #FAF8F3;  /* Warmes Weiß – Überschriften */
+  --gold: #B8955A;        /* Gold – Akzentfarbe */
+  --gold-light: #D4B07A;  /* Helles Gold – Hover, Kursivtitel */
+  --dark: #1A1410;        /* Dunkelstes Braun – Hintergrund */
+  --dark-mid: #2E2318;    /* Mittleres Dunkel – Abschnitt "Über uns" */
+  --red: #8B2020;         /* Dunkelrot – Laufband-Hintergrund */
+  --red-warm: #A0392A;    /* Warmes Rot – "Geschlossen"-Text */
+  --stone: #9E9183;       /* Stein – dezente Texte */
+  --stone-light: #C8BFB0; /* Heller Stein – Untertitel */
+}
+html { scroll-behavior: smooth; }
+body { font-family: 'Jost', sans-serif; background: var(--dark); color: var(--cream); overflow-x: hidden; }
+
+/* ============================================================
+   NAVIGATION (NAVBAR)
+   nav#navbar – fixiert am oberen Rand
+   .nav-logo   – Logo links
+   .nav-links  – Links (nur Desktop, ab 900px sichtbar)
+   .nav-reserve – "Reservieren"-Button (nur Desktop)
+   .nav-burger  – Hamburger-Icon (nur Mobile)
+   ============================================================ */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1.1rem 1.2rem;
+  transition: background 0.5s, padding 0.3s;
+}
+/* Klasse wird per JS beim Scrollen hinzugefügt (scrollY > 50) */
+nav.scrolled {
+  background: rgba(26,20,16,0.97); backdrop-filter: blur(12px);
+  padding: 0.75rem 1.2rem; border-bottom: 1px solid rgba(184,149,90,0.2);
+}
+.nav-logo {
+  font-family: 'Cormorant Garamond', serif; font-size: 1.1rem;
+  font-weight: 300; letter-spacing: 0.15em; color: var(--gold); text-decoration: none;
+}
+/* "Antica" im Logo kursiv und in Cremeton */
+.nav-logo span { font-style: italic; color: var(--cream); }
+/* Desktop-Links – auf Mobile ausgeblendet */
+.nav-links { display: none; }
+.nav-reserve { display: none; }
+
+/* Hamburger-Menü-Icon (3 Linien) */
+.nav-burger {
+  display: flex; flex-direction: column; gap: 5px;
+  cursor: pointer; background: none; border: none; padding: 4px;
+}
+.nav-burger span { display: block; width: 22px; height: 1px; background: var(--stone-light); transition: all 0.3s; }
+/* Animation: 3 Linien → X wenn Menü offen (.open per JS) */
+.nav-burger.open span:nth-child(1) { transform: rotate(45deg) translate(4px, 4px); }
+.nav-burger.open span:nth-child(2) { opacity: 0; }
+.nav-burger.open span:nth-child(3) { transform: rotate(-45deg) translate(4px, -4px); }
+
+/* ============================================================
+   MOBILES MENÜ (Vollbild-Overlay)
+   div#mobileMenu – ein- und ausgeblendet per .open-Klasse (JS)
+   ============================================================ */
+.mobile-menu {
+  position: fixed; inset: 0; z-index: 90;
+  background: rgba(26,20,16,0.98);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 2.2rem; opacity: 0; pointer-events: none; transition: opacity 0.35s;
+}
+.mobile-menu.open { opacity: 1; pointer-events: all; }
+.mobile-menu a {
+  font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 300;
+  color: var(--cream); text-decoration: none; letter-spacing: 0.08em; transition: color 0.3s;
+}
+.mobile-menu a:hover { color: var(--gold-light); }
+/* Reservierungsbutton im mobilen Menü */
+.mobile-menu .m-reserve {
+  font-family: 'Jost', sans-serif; font-size: 0.72rem; letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--dark); background: var(--gold);
+  padding: 0.85rem 2.5rem; margin-top: 0.5rem;
+}
+
+/* ============================================================
+   HERO-SEKTION
+   section#hero – Vollbildbereich ganz oben
+   .hero-bg      – Hintergrundbild (URL unten im HTML ändern)
+   .hero-content – Textinhalt (Titel, Untertitel, Buttons)
+   ============================================================ */
+#hero {
+  min-height: 100svh; position: relative; overflow: hidden;
+  display: flex; flex-direction: column; justify-content: flex-end;
+}
+/* Hintergrundbild – URL hier oder im HTML-Teil ändern */
+.hero-bg {
+  position: absolute; inset: 0;
+  background: url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=1400&q=85') center/cover no-repeat;
+}
+/* Dunkler Farbverlauf über das Bild */
+.hero-bg::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(to top, var(--dark) 0%, rgba(26,20,16,0.6) 50%, rgba(26,20,16,0.2) 100%);
+}
+.hero-content { position: relative; z-index: 2; padding: 0 1.2rem 3.5rem; }
+/* Kleine Schrift über dem Haupttitel */
+.hero-eyebrow {
+  font-size: 0.68rem; letter-spacing: 0.35em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 0.9rem; display: block;
+  opacity: 0; animation: fadeUp 0.8s 0.3s forwards;
+}
+/* Haupttitel H1 – Größe passt sich per clamp() an Bildschirmbreite an */
+.hero-title {
+  font-family: 'Cormorant Garamond', serif; font-size: clamp(2.8rem, 11vw, 5.5rem);
+  font-weight: 300; line-height: 1.05; color: var(--warm-white);
+  opacity: 0; animation: fadeUp 0.8s 0.5s forwards;
+}
+/* Kursive zweite Zeile des Titels in Goldton */
+.hero-title em { font-style: italic; color: var(--gold-light); display: block; }
+/* Untertitel / Tagline */
+.hero-subtitle {
+  font-family: 'Cormorant Garamond', serif; font-size: clamp(0.95rem, 3.5vw, 1.1rem);
+  font-weight: 300; font-style: italic; color: var(--stone-light);
+  margin: 1rem 0 2rem; line-height: 1.6; max-width: 420px;
+  opacity: 0; animation: fadeUp 0.8s 0.7s forwards;
+}
+/* Schaltflächen-Container */
+.hero-cta {
+  display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;
+  opacity: 0; animation: fadeUp 0.8s 0.9s forwards;
+}
+/* Goldener Primär-Button */
+.btn-primary {
+  font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--dark); background: var(--gold); padding: 0.85rem 1.8rem;
+  text-decoration: none; transition: background 0.3s; -webkit-tap-highlight-color: transparent;
+}
+.btn-primary:hover { background: var(--gold-light); }
+/* Sekundärer Link mit Unterstrich */
+.btn-secondary {
+  font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--stone-light); text-decoration: none;
+  padding-bottom: 2px; border-bottom: 1px solid rgba(200,191,176,0.3); transition: color 0.3s;
+}
+.btn-secondary:hover { color: var(--gold-light); }
+/* "Scroll"-Hinweis unten rechts im Hero */
+.hero-scroll {
+  position: absolute; bottom: 1rem; right: 1.5rem; z-index: 2;
+  display: flex; flex-direction: column; align-items: center; gap: 0.4rem;
+  font-size: 0.6rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--stone);
+  opacity: 0; animation: fadeIn 1s 1.5s forwards;
+}
+/* Animierte Linie im Scroll-Hinweis */
+.scroll-line {
+  width: 1px; height: 28px;
+  background: linear-gradient(to bottom, var(--gold), transparent);
+  animation: scrollPulse 2s 1.5s ease-in-out infinite;
+}
+
+/* ============================================================
+   ORNAMENT (dekoratives Trennzeichen)
+   Wiederverwendbar – einfach <div class="ornament"> einsetzen
+   ============================================================ */
+.ornament { display: flex; align-items: center; gap: 1rem; justify-content: center; }
+.ornament-line { flex: 1; height: 1px; background: linear-gradient(to right, transparent, var(--gold), transparent); max-width: 100px; }
+.ornament-diamond { width: 5px; height: 5px; background: var(--gold); transform: rotate(45deg); flex-shrink: 0; }
+
+/* ============================================================
+   ALLGEMEINE SECTIONS & CONTAINER
+   .section-label  – kleine goldene Beschriftung über dem Titel
+   .section-title  – großer Abschnittsüberschrift
+   ============================================================ */
+section { padding: 4.5rem 0; }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 1.2rem; }
+.section-label {
+  font-size: 0.65rem; letter-spacing: 0.35em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 0.7rem; display: block;
+}
+.section-title {
+  font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 7vw, 3.5rem);
+  font-weight: 300; line-height: 1.1; color: var(--warm-white);
+}
+.section-title em { font-style: italic; color: var(--gold-light); }
+
+/* ============================================================
+   LAUFBAND / MARQUEE (rotes Band mit Gerichten)
+   div#specialties – der rote Streifen
+   .marquee-track  – die animierte Zeile (JS-frei, nur CSS)
+   Inhalte im HTML-Block #specialties ändern
+   ============================================================ */
+#specialties {
+  background: var(--red); padding: 1.5rem 0; overflow: hidden;
+  border-top: 1px solid rgba(255,255,255,0.08); border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.marquee-track {
+  display: flex; gap: 2.5rem; animation: marquee 28s linear infinite; white-space: nowrap;
+}
+.marquee-item {
+  display: flex; align-items: center; gap: 1.2rem;
+  font-family: 'Cormorant Garamond', serif; font-size: 1.15rem;
+  font-weight: 300; font-style: italic; color: rgba(250,242,224,0.9); flex-shrink: 0;
+}
+.marquee-dot { width: 4px; height: 4px; background: rgba(250,242,224,0.4); border-radius: 50%; }
+
+/* ============================================================
+   ÜBER UNS SEKTION (section#about)
+   .about-img-wrap  – Bild-Container links
+   .about-img-label – Goldenes Etikett auf dem Bild
+   .about-text      – Textspalte rechts
+   .about-stats     – 3-spaltiges Zahlen-Raster (Jahre, Restaurants, Tradition)
+   Bild-URL im HTML ändern: src="Bilder/ciro.jpeg"
+   ============================================================ */
+#about { background: var(--dark-mid); }
+.about-img-wrap { position: relative; margin-bottom: 2rem; }
+.about-img { width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; filter: sepia(15%) brightness(0.85); }
+.about-img-label {
+  position: absolute; bottom: 1rem; left: 1rem; background: var(--gold);
+  color: var(--dark); font-size: 0.62rem; letter-spacing: 0.2em;
+  text-transform: uppercase; padding: 0.4rem 0.9rem;
+}
+.about-text p { font-size: 0.95rem; line-height: 1.85; color: var(--stone-light); margin-bottom: 1.2rem; }
+.about-text p strong { color: var(--cream); font-weight: 400; }
+/* Statistik-Raster – 3 Spalten */
+.about-stats {
+  display: grid; grid-template-columns: repeat(3,1fr); margin-top: 2.5rem;
+  border-top: 1px solid rgba(184,149,90,0.2); border-left: 1px solid rgba(184,149,90,0.2);
+}
+.stat {
+  padding: 1.2rem 0.5rem; text-align: center;
+  border-right: 1px solid rgba(184,149,90,0.2); border-bottom: 1px solid rgba(184,149,90,0.2);
+}
+/* Große Zahl in Gold */
+.stat-num { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; font-weight: 300; color: var(--gold); display: block; }
+/* Beschriftung unter der Zahl */
+.stat-label { font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--stone); margin-top: 0.2rem; display: block; }
+
+/* ============================================================
+   SPEISEKARTE SEKTION (section#menu)
+   .menu-nav        – Tab-Leiste (Antipasti / Secondi / Contorni / Dolci)
+   .menu-tab        – einzelner Tab-Button (aktiv via .active-Klasse)
+   .menu-section    – Inhaltsbereich je Tab (Standard: display:none)
+   .menu-section.active – sichtbarer Tab (JS: switchTab-Funktion)
+   .menu-item       – einzelnes Gericht (Name + Beschreibung + Preis)
+   Preise und Gerichte direkt im HTML ändern
+   ============================================================ */
+#menu { background: var(--dark); }
+.menu-nav {
+  display: flex; margin-top: 2rem; border-bottom: 1px solid rgba(184,149,90,0.2);
+  overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none;
+}
+.menu-nav::-webkit-scrollbar { display: none; }
+.menu-tab {
+  font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--stone); padding: 0.75rem 1.1rem; cursor: pointer;
+  border-bottom: 2px solid transparent; margin-bottom: -1px;
+  transition: color 0.3s, border-color 0.3s;
+  background: none; border-top: none; border-left: none; border-right: none;
+  white-space: nowrap; flex-shrink: 0;
+}
+.menu-tab:hover { color: var(--cream); }
+/* Aktiver Tab – goldene Unterstreichung */
+.menu-tab.active { color: var(--gold); border-bottom-color: var(--gold); }
+.menu-section { display: none; padding-top: 2rem; }
+.menu-section.active { display: block; }
+/* Kategorie-Überschrift innerhalb eines Tabs */
+.menu-category-title {
+  font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 300; font-style: italic;
+  color: var(--gold-light); margin-bottom: 1.2rem; padding-bottom: 0.6rem;
+  border-bottom: 1px solid rgba(184,149,90,0.15);
+}
+.menu-items { margin-bottom: 2.5rem; }
+/* Einzelnes Gericht: Name+Beschreibung links, Preis rechts */
+.menu-item {
+  display: grid; grid-template-columns: 1fr auto; gap: 0.8rem;
+  padding: 1rem 0; border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+.menu-item-name { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; font-weight: 400; color: var(--warm-white); }
+.menu-item-desc { font-size: 0.78rem; color: var(--stone); margin-top: 0.15rem; font-style: italic; line-height: 1.4; }
+.menu-item-price { font-family: 'Cormorant Garamond', serif; font-size: 1rem; color: var(--gold); white-space: nowrap; align-self: start; margin-top: 3px; }
+
+/* ============================================================
+   GALERIE / BILDSLIDER (section#gallery)
+   .slider-outer    – äußerer Container (Touch/Drag-Events hier)
+   .slider-track    – beweglicher Streifen mit allen Slides
+   .slide           – einzelne Folie
+   .gallery-meta    – Info-Leiste unter dem Slider
+   #slideName / #slideSub – per JS aktualisierter Bildtitel
+   Bildunterschriften im JS-Bereich in "captions"-Array ändern
+   ============================================================ */
+#gallery { background: var(--dark-mid); padding-bottom: 0; }
+
+.gallery-layout { display: flex; flex-direction: column; gap: 0; margin-top: 2rem; }
+
+/* Slider-Außencontainer – überlaufendes Bild zeigt nächste Folie an */
+.slider-outer {
+  overflow: hidden; touch-action: pan-y; cursor: grab; user-select: none;
+  padding: 0 1.2rem;
+}
+.slider-outer:active { cursor: grabbing; }
+.slider-track {
+  display: flex; gap: 0.75rem;
+  transition: transform 0.7s cubic-bezier(0.4,0,0.2,1);
+  will-change: transform;
+}
+/* Einzelne Folie – Breite passt sich an (72vw auf Mobile, 300px auf Desktop) */
+.slide { flex: 0 0 72vw; max-width: 300px; position: relative; overflow: hidden; }
+.slide img {
+  width: 100%; aspect-ratio: 1/1;
+  object-fit: cover; display: block;
+  filter: brightness(0.55) saturate(0.8); /* Inaktive Folien abgedunkelt */
+  transition: filter 0.6s, transform 0.6s;
+  pointer-events: none;
+}
+/* Aktive Folie – volle Helligkeit und leicht vergrößert */
+.slide.active img { filter: brightness(1) saturate(1); transform: scale(1.03); }
+.slide-border {
+  position: absolute; inset: 0;
+  border: 1px solid rgba(184,149,90,0);
+  transition: border-color 0.5s; pointer-events: none;
+}
+/* Goldener Rahmen bei aktiver Folie */
+.slide.active .slide-border { border-color: rgba(184,149,90,0.55); }
+/* Bildnummer oben rechts (z.B. "01 / 06") */
+.slide-num {
+  position: absolute; top: 0.7rem; right: 0.8rem;
+  font-size: 0.58rem; letter-spacing: 0.12em;
+  color: rgba(245,240,232,0.45);
+}
+
+/* Info-Leiste unter dem Slider */
+.gallery-meta {
+  display: flex; flex-direction: column;
+  padding: 1.8rem 1.2rem 3rem;
+}
+.gallery-meta-row {
+  display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem;
+  margin-bottom: 1.2rem;
+}
+.gallery-meta-text {}
+/* Bildname – wird per JS animiert (Überblenden) */
+.gallery-meta-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.35rem; font-weight: 300; font-style: italic;
+  color: var(--warm-white); display: block; margin-bottom: 0.2rem;
+  transition: opacity 0.35s;
+}
+/* Untertitel des Bildes */
+.gallery-meta-sub {
+  font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--gold); display: block;
+  transition: opacity 0.35s;
+}
+.gallery-meta-name.fade, .gallery-meta-sub.fade { opacity: 0; }
+
+/* Pfeil-Buttons (← →) */
+.slider-arrows { display: flex; gap: 0.6rem; flex-shrink: 0; }
+.slider-btn {
+  width: 40px; height: 40px; border: 1px solid rgba(184,149,90,0.3);
+  background: none; color: var(--gold); font-size: 1rem;
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  transition: background 0.3s, border-color 0.3s; -webkit-tap-highlight-color: transparent;
+}
+.slider-btn:hover { background: rgba(184,149,90,0.1); border-color: var(--gold); }
+
+/* Fortschrittsbalken – zeigt Zeit bis zum nächsten Bild */
+.slider-progress { height: 1px; background: rgba(184,149,90,0.15); overflow: hidden; margin-bottom: 1rem; }
+.slider-progress-bar { height: 100%; background: var(--gold); width: 0%; transition: none; }
+
+/* Dot-Navigation unter dem Slider */
+.slider-dots { display: flex; gap: 0.45rem; align-items: center; }
+.dot {
+  width: 14px; height: 1px; background: rgba(184,149,90,0.3);
+  cursor: pointer; transition: all 0.35s; border: none; padding: 0; flex-shrink: 0;
+}
+/* Aktiver Dot – breiter und goldfarben */
+.dot.active { background: var(--gold); width: 26px; }
+
+/* ============================================================
+   KONTAKT / RESERVIERUNG SEKTION (section#reservation)
+   .reservation-text – Einladungstext
+   .hours-list       – Öffnungszeiten-Liste (Tag + Uhrzeit)
+   .contact-cards    – Karten mit Telefon und Adresse
+   .cta-call         – Goldener Anruf-Button
+   Telefonnummer und Adresse in den <a>-Tags im HTML ändern
+   ============================================================ */
+#reservation { background: var(--dark); position: relative; overflow: hidden; }
+#reservation::before {
+  content: ''; position: absolute; inset: 0;
+  background: url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=900&q=80') center/cover no-repeat;
+  opacity: 0.055; /* Sehr dezentes Hintergrundbild */
+}
+.reservation-layout { position: relative; z-index: 1; margin-top: 2.5rem; }
+.reservation-text { font-size: 0.95rem; line-height: 1.8; color: var(--stone-light); margin-bottom: 2rem; }
+/* Öffnungszeiten – jede Zeile: Tag links, Uhrzeit rechts */
+.hours-list { list-style: none; margin-bottom: 2.5rem; }
+.hours-list li { display: flex; justify-content: space-between; gap: 1rem; padding: 0.75rem 0; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 0.85rem; }
+.hours-list .day { color: var(--stone); }
+.hours-list .time { color: var(--cream); text-align: right; }
+/* "Fechado" (Geschlossen) – rote Farbe für geschlossene Tage */
+.hours-closed { color: var(--red-warm) !important; }
+.contact-cards { display: grid; grid-template-columns: 1fr; gap: 0.75rem; margin-bottom: 1.8rem; }
+.contact-card {
+  display: flex; align-items: center; gap: 1rem; padding: 1rem 1.2rem;
+  border: 1px solid rgba(184,149,90,0.18); text-decoration: none;
+  transition: border-color 0.3s, background 0.3s; -webkit-tap-highlight-color: transparent;
+}
+.contact-card:hover { border-color: var(--gold); background: rgba(184,149,90,0.05); }
+.contact-card-icon {
+  width: 36px; height: 36px; flex-shrink: 0;
+  border: 1px solid rgba(184,149,90,0.3);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.85rem; color: var(--gold);
+}
+.contact-card-label { font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--stone); display: block; margin-bottom: 0.15rem; }
+.contact-card-value { font-size: 0.88rem; color: var(--cream); display: block; }
+/* Großer CTA-Button "Ligar agora e reservar" */
+.cta-call {
+  display: inline-block; font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--dark); background: var(--gold); padding: 1rem 2rem;
+  text-decoration: none; transition: background 0.3s; -webkit-tap-highlight-color: transparent;
+}
+.cta-call:hover { background: var(--gold-light); }
+
+/* ============================================================
+   FOOTER
+   .footer-logo – Logo im Footer
+   .footer-sub  – Adresse klein darunter
+   .footer-copy – Copyright-Zeile
+   ============================================================ */
+footer {
+  background: #0E0B08; padding: 2rem 1.2rem;
+  border-top: 1px solid rgba(184,149,90,0.15);
+}
+.footer-inner {
+  max-width: 1200px; margin: 0 auto;
+  display: flex; flex-direction: column; align-items: center;
+  gap: 0.8rem; text-align: center;
+}
+.footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 300; letter-spacing: 0.12em; color: var(--gold); }
+.footer-logo span { font-style: italic; color: var(--cream); }
+.footer-sub { font-size: 0.72rem; color: var(--stone); letter-spacing: 0.08em; font-style: italic; }
+.footer-copy { font-size: 0.65rem; color: rgba(158,145,131,0.5); }
+
+/* ============================================================
+   REVEAL-ANIMATION
+   Elemente mit Klasse .reveal starten unsichtbar
+   IntersectionObserver (JS unten) fügt .visible hinzu beim Einblenden
+   ============================================================ */
+.reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.65s ease, transform 0.65s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ============================================================
+   KEYFRAME-ANIMATIONEN
+   fadeUp      – Hero-Texte erscheinen von unten
+   fadeIn      – einfaches Einblenden
+   scrollPulse – pulsierender Scrollhinweis
+   marquee     – endloser horizontaler Lauf des Bandes
+   ============================================================ */
+@keyframes fadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+@keyframes scrollPulse { 0%,100%{opacity:.4;} 50%{opacity:1;} }
+@keyframes marquee { from{transform:translateX(0);} to{transform:translateX(-50%);} }
+
+/* ============================================================
+   RESPONSIVE: TABLET (ab 600px)
+   ============================================================ */
+@media (min-width:600px) {
+  nav { padding: 1.3rem 2rem; }
+  nav.scrolled { padding: 0.85rem 2rem; }
+  .container { padding: 0 2rem; }
+  .hero-content { padding: 0 2rem 4rem; }
+  .about-img { aspect-ratio: 16/9; }
+  .slider-outer { padding: 0 2rem; }
+  .slide { flex: 0 0 260px; max-width: 260px; }
+  .contact-cards { grid-template-columns: 1fr 1fr; }
+  .slider-controls { padding: 1.2rem 2rem 3rem; }
+  footer { padding: 2rem 2rem; }
+}
+
+/* ============================================================
+   RESPONSIVE: DESKTOP (ab 900px)
+   Burger-Menü verschwindet, Desktop-Nav erscheint
+   Zweispaltiges Layout für Über-uns und Kontakt
+   ============================================================ */
+@media (min-width:900px) {
+  nav { padding: 1.5rem 4rem; }
+  nav.scrolled { padding: 1rem 4rem; }
+  .nav-burger { display: none; } /* Burger auf Desktop unsichtbar */
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a { font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--stone-light); text-decoration: none; transition: color 0.3s; }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-reserve { display: inline-block; font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--dark); background: var(--gold); padding: 0.6rem 1.5rem; text-decoration: none; transition: background 0.3s; }
+  .nav-reserve:hover { background: var(--gold-light); }
+
+  /* Hero: Farbverlauf von links (Desktop – Text links, Bild rechts) */
+  .hero-bg::after { background: linear-gradient(to right, var(--dark) 0%, rgba(26,20,16,0.65) 55%, rgba(26,20,16,0.12) 100%); }
+  .hero-content { padding: 0 4rem 6rem; max-width: 700px; }
+  .hero-scroll { right: 3rem; bottom: 2rem; }
+
+  section { padding: 7rem 0; }
+  .container { padding: 0 4rem; }
+
+  /* Zweispaltiges Über-uns-Layout auf Desktop */
+  .about-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; margin-top: 4rem; }
+  .about-img-wrap { margin-bottom: 0; }
+  .about-img { aspect-ratio: 3/4; }
+
+  .slider-outer { padding: 0 4rem; }
+  .slide { flex: 0 0 300px; max-width: 300px; }
+  .slider-controls { padding: 1.2rem 4rem 3rem; }
+
+  /* Zweispaltiges Kontakt-Layout auf Desktop */
+  .reservation-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; }
+  .contact-cards { grid-template-columns: 1fr; }
+
+  footer { padding: 2rem 4rem; }
+  .footer-inner { flex-direction: row; justify-content: space-between; text-align: left; }
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     NAVIGATION
+     nav#navbar – die fixierte Leiste oben
+     Desktop-Links (#about, #menu, #gallery, #reservation) hier anpassen
+     ============================================================ -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">Sabella <span>Antica</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">Nossa História</a></li>   <!-- "Geschichte" -->
+    <li><a href="#menu">Cardápio</a></li>           <!-- "Speisekarte" -->
+    <li><a href="#gallery">Galeria</a></li>         <!-- "Galerie" -->
+    <li><a href="#reservation">Contato</a></li>     <!-- "Kontakt" -->
+  </ul>
+  <a href="#reservation" class="nav-reserve">Reservar</a>   <!-- "Reservieren" -->
+  <!-- Hamburger-Button für Mobile – JS schaltet .open um -->
+  <button class="nav-burger" id="burger" aria-label="Abrir menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ============================================================
+     MOBILES VOLLBILD-MENÜ
+     Links hier bei Bedarf anpassen – müssen mit den Desktop-Links übereinstimmen
+     ============================================================ -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#about" class="mob-link">Nossa História</a>
+  <a href="#menu" class="mob-link">Cardápio</a>
+  <a href="#gallery" class="mob-link">Galeria</a>
+  <a href="#reservation" class="mob-link">Contato</a>
+  <a href="#reservation" class="mob-link m-reserve">Reservar</a>
+</div>
+
+<!-- ============================================================
+     HERO-SEKTION
+     Hintergrundbild: .hero-bg im CSS ändern (background: url(...))
+     Alternativ: <img>-Tag hier einsetzen
+     ============================================================ -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <!-- Kleine goldene Zeile über dem Titel – z.B. Gründungsjahr -->
+    <span class="hero-eyebrow">Dal 1987 — Cucina Tradizionale</span>
+    <!-- Haupttitel – zweite Zeile im <em> erscheint kursiv in Goldton -->
+    <h1 class="hero-title">Sabella<em>Antica Rosticceria</em></h1>
+    <!-- Tagline / Untertitel -->
+    <p class="hero-subtitle">Culinária italiana autêntica, transmitida de geração em geração — preparada com paixão e os melhores ingredientes.</p>
+    <!-- Zwei Buttons: primär (gold) und sekundär (Link mit Unterstrich) -->
+    <div class="hero-cta">
+      <a href="#menu" class="btn-primary">Ver Cardápio</a>
+      <a href="#reservation" class="btn-secondary">Reservar uma mesa</a>
+    </div>
+  </div>
+  <!-- Scroll-Hinweis unten rechts ("Scopri" = entdecke) -->
+  <div class="hero-scroll"><div class="scroll-line"></div>Scopri</div>
+</section>
+
+<!-- ============================================================
+     LAUFBAND / MARQUEE
+     Gerichte hier doppeln (2× dieselbe Liste) für nahtlosen Loop
+     ============================================================ -->
+<div id="specialties">
+  <div class="marquee-track">
+    <!-- Erste Kopie -->
+    <div class="marquee-item"><span class="marquee-dot"></span>Pollo alla Diavola</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Agnello al Forno</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Supplì di Riso</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Porchetta Romana</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Coda alla Vaccinara</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Abbacchio al Forno</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Saltimbocca alla Romana</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Tiramisù della Casa</div>
+    <!-- Zweite Kopie – für nahtlosen Loop notwendig -->
+    <div class="marquee-item"><span class="marquee-dot"></span>Pollo alla Diavola</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Agnello al Forno</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Supplì di Riso</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Porchetta Romana</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Coda alla Vaccinara</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Abbacchio al Forno</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Saltimbocca alla Romana</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Tiramisù della Casa</div>
+  </div>
+</div>
+
+<!-- ============================================================
+     ÜBER UNS SEKTION
+     Bild: src="Bilder/ciro.jpeg" – lokale Datei, Pfad hier anpassen
+     Bildunterschrift: .about-img-label ("Ciro Sabella")
+     Fließtext: 3 <p>-Absätze im .about-text
+     Statistiken: .about-stats – drei .stat-Blöcke
+     ============================================================ -->
+<section id="about">
+  <div class="container">
+    <div class="reveal">
+      <!-- Kleine goldene Beschriftung über dem Titel -->
+      <span class="section-label">La nostra storia</span>
+      <!-- Abschnittsüberschrift – <em> wird kursiv in Goldton -->
+      <h2 class="section-title">Uma cozinha que<br><em>conta histórias</em></h2>
+    </div>
+    <div class="about-layout">
+      <!-- Bild links – Pfad anpassen falls nötig -->
+      <div class="about-img-wrap reveal">
+        <img class="about-img" src="Bilder/ciro.jpeg" alt="Interior rústico do restaurante" loading="lazy">
+        <span class="about-img-label">Ciro Sabella</span>
+      </div>
+      <!-- Textblock rechts – Absätze hier bearbeiten -->
+      <div class="about-text reveal">
+        <p>Cresci em uma pequena cidade litorânea da Itália, onde o cheiro de manjericão fresco, tomates maduros e molho cozido lentamente fazia parte do dia a dia. Desde criança, ficava ao lado da minha nonna na cozinha e aprendi que a verdadeira culinária italiana não precisa de segredos — apenas de tempo, dedicação e os melhores ingredientes.</p>
+        <p>Essa filosofia marca cada prato que sai da minha cozinha. Trabalho com produtos cuidadosamente selecionados e combino receitas tradicionais com nuances modernas refinadas. Assim nascem pratos que não apenas saciam, mas evocam memórias e criam novas.</p>
+        <p>O que esperar de nós? Uma culinária italiana honesta, que se sente — da primeira garfada ao último bocado. Um lugar onde o prazer, a hospitalidade e o amor pelos detalhes estão no centro de tudo.</p>
+        <p><strong>Buon appetito!</strong></p>
+        <!-- Statistik-Kacheln – Zahlen und Labels hier anpassen -->
+        <div class="about-stats">
+          <div class="stat"><span class="stat-num">15</span><span class="stat-label">Anos</span></div>
+          <div class="stat"><span class="stat-num">2</span><span class="stat-label">Restaurantes</span></div>
+          <div class="stat"><span class="stat-num">100%</span><span class="stat-label">Tradizione</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SPEISEKARTE SEKTION
+     4 Tabs: Antipasti / Secondi / Contorni / Dolci & Vinhos
+     Tab wechseln: onclick="switchTab('ID', this)"
+     Neuen Tab anlegen:
+       1. <button class="menu-tab" onclick="switchTab('neuertab',this)">Name</button>
+       2. <div class="menu-section" id="tab-neuertab">...</div>
+     ============================================================ -->
+<section id="menu">
+  <div class="container">
+    <div class="reveal">
+      <span class="section-label">La cucina</span>
+      <h2 class="section-title">Uma visão do nosso <em>cardápio</em></h2>
+    </div>
+    <!-- Tab-Leiste – Reihenfolge hier ändern -->
+    <div class="menu-nav reveal">
+      <button class="menu-tab active" onclick="switchTab('antipasti',this)">Antipasti</button>
+      <button class="menu-tab" onclick="switchTab('secondi',this)">Secondi Piatti</button>
+      <button class="menu-tab" onclick="switchTab('contorni',this)">Contorni</button>
+      <button class="menu-tab" onclick="switchTab('dolci',this)">Dolci &amp; Vinhos</button>
+    </div>
+
+    <!-- TAB 1: ANTIPASTI -->
+    <div class="menu-section active" id="tab-antipasti">
+      <h3 class="menu-category-title">Antipasti della Casa</h3>
+      <div class="menu-items">
+        <!-- Gericht: Name | Beschreibung | Preis -->
+        <div class="menu-item"><div><div class="menu-item-name">Supplì al Telefono</div><div class="menu-item-desc">Bolinhos de arroz crocantes, ragù e pecorino derretido — receita da casa</div></div><span class="menu-item-price">8,50 €</span></div>
+        <div class="menu-item"><div><div class="menu-item-name">Bruschetta Mista</div><div class="menu-item-desc">Pão rústico torrado, tomates temperados, pasta de azeitona, Prosciutto di Parma</div></div><span class="menu-item-price">9,00 €</span></div>
+        <div class="menu-item"><div><div class="menu-item-name">Burrata con Pomodori Datterini</div><div class="menu-item-desc">Burrata cremosa da Puglia, tomates cereja, manjericão, azeite extravirgem</div></div><span class="menu-item-price">13,50 €</span></div>
+        <div class="menu-item"><div><div class="menu-item-name">Carpaccio di Manzo</div><div class="menu-item-desc">Filé de boi fatiado finamente, rúcula, Parmigiano Reggiano 36 meses, alcaparras</div></div><span class="menu-item-price">15,00 €</span></div>
+        <div class="menu-item"><div><div class="menu-item-name">Fritto Misto Romano</div><div class="menu-item-desc">Flores de abobrinha, corações de alcachofra e folhas de sálvia fritos</div></div><span class="menu-item-price">14,00 €</span></div>
+        <div class="menu-item"><div><div class="menu-item-name">Tagliere di Salumi e Formaggi</div><div class="menu-item-desc">Seleção de embutidos e queijos da estação, mel, nozes, mostarda de figo</div></div><span class="menu-item-price">22,00 €</span></div>
+      </div>
+    </div>
+
+    <!-- TAB 2: SECONDI PIATTI -->
+    <div class="menu-section" id="tab-secondi">
+      <h3 class="menu-category-title">I Nostri Arrosti</h3>
+      <div class="menu-items">
+        <div class="menu-item"><div><div class="menu-item-name">Porchetta Romana</div><div class="menu-item-desc">Lombo de leitão assado e crocante, ervas da Maremma, alho, funcho silvestre</div></div><span class="menu-item-price">19,50 €</span></div>
+        <div class="menu-item"><div><div class="menu-item-name">Abbacchio al Forno</div><div class="menu-item-desc">Cordeiro do Lácio assado no forno a lenha, alecrim, vinho branco, alho</div></div><span class="menu-item-price">24,00 €</span></div>
+        <div class="menu-item"><div><div class="menu-item-name">Pollo alla Diavola</div><div class="menu-item-desc">Frango grelhado aberto, pimenta-do-reino e pimenta — do jeito da vovó</div></div><span class="menu-item-price">18,00 €</span></div>
+        <div class="menu-item"><div><div class="menu-item-name">Saltimbocca alla Romana</div><div class="menu-item-desc">Escalope de vitela com presunto cru e sálvia fresca, manteiga ao vinho branco</div></div><span class="menu-item-price">23,50 €</span></div>
+        <div class="menu-item"><div><div class="menu-item-name">Coda alla Vaccinara</div><div class="menu-item-desc">Rabo de boi cozido à moda romana, aipo, tomate, chocolate amargo</div></div><span class="menu-item-price">21,00 €</span></div>
+        <div class="menu-item"><div><div class="menu-item-name">Branzino in Crosta di Sale</div><div class="menu-item-desc">Robalo da criação siciliana em crosta de sal marinho, manteiga de alcaparras, limão</div></div><span class="menu-item-price">26,50 €</span></div>
+      </div>
+    </div>
+
+    <!-- TAB 3: CONTORNI -->
+    <div class="menu-section" id="tab-contorni">
+      <h3 class="menu-category-title">Contorni e Insalate</h3>
+      <div class="menu-items">
+        <div class="menu-item"><div><div class="menu-item-name">Patate al Forno</div><div class="menu-item-desc">Batatas assadas ao forno, alecrim, azeite de oliva, flor de sal</div></div><span class="menu-item-price">6,00 €</span></div>
+        <div class="menu-item"><div><div class="menu-item-name">Carciofi alla Romana</div><div class="menu-item-desc">Alcachofras à moda romana, hortelã, alho, salsinha</div></div><span class="menu-item-price">8,00 €</span></div>
+        <div class="menu-item"><div><div class="menu-item-name">Cicoria Ripassata</div><div class="menu-item-desc">Chicória amarga salteada com alho e peperoncino</div></div><span class="menu-item-price">7,00 €</span></div>
+        <div class="menu-item"><div><div class="menu-item-name">Insalata Mista della Stagione</div><div class="menu-item-desc">Salada mista de folhas da estação, molho da casa de balsamico branco</div></div><span class="menu-item-price">6,50 €</span></div>
+        <div class="menu-item"><div><div class="menu-item-name">Peperonata</div><div class="menu-item-desc">Refogado de pimentões coloridos, cebola, tomate e manjericão</div></div><span class="menu-item-price">7,50 €</span></div>
+      </div>
+    </div>
+
+    <!-- TAB 4: DOLCI & VINHOS -->
+    <div class="menu-section" id="tab-dolci">
+      <h3 class="menu-category-title">Dolci Tradizionali</h3>
+      <div class="menu-items">
+        <div class="menu-item"><div><div class="menu-item-name">Tiramisù della Casa</div><div class="menu-item-desc">O original — mascarpone, savoiardi, espresso da mistura napolitana</div></div><span class="menu-item-price">8,50 €</span></div>
+        <div class="menu-item"><div><div class="menu-item-name">Panna Cotta al Miele</div><div class="menu-item-desc">Creme suave, mel de castanha da Toscana, compota de figo</div></div><span class="menu-item-price">7,50 €</span></div>
+        <div class="menu-item"><div><div class="menu-item-name">Torta della Nonna</div><div class="menu-item-desc">Torta de massa podre com creme de baunilha, pinoli e açúcar de confeiteiro</div></div><span class="menu-item-price">8,00 €</span></div>
+        <div class="menu-item"><div><div class="menu-item-name">Gelato Artigianale</div><div class="menu-item-desc">Duas bolas de sorvete artesanal — sabores variados diariamente</div></div><span class="menu-item-price">6,00 €</span></div>
+      </div>
+      <!-- Weinauswahl -->
+      <h3 class="menu-category-title">Vini della Casa</h3>
+      <div class="menu-items">
+        <div class="menu-item"><div><div class="menu-item-name">Frascati Superiore DOC</div><div class="menu-item-desc">Fresco e mineral, ideal para peixes e antipasti</div></div><span class="menu-item-price">6,50 € / taça</span></div>
+        <div class="menu-item"><div><div class="menu-item-name">Montepulciano d'Abruzzo</div><div class="menu-item-desc">Encorpado, aromático, perfeito para carnes</div></div><span class="menu-item-price">7,00 € / taça</span></div>
+        <div class="menu-item"><div><div class="menu-item-name">Prosecco Valdobbiadene DOCG</div><div class="menu-item-desc">Borbulhante e delicado, do coração do Vêneto</div></div><span class="menu-item-price">7,50 € / taça</span></div>
+      </div>
+    </div>
+
+    <!-- Dekoratives Trennzeichen -->
+    <div class="ornament reveal" style="margin-top:2rem;">
+      <div class="ornament-line"></div><div class="ornament-diamond"></div><div class="ornament-line"></div>
+    </div>
+    <!-- Hinweis auf vollständige Speisekarte vor Ort -->
+    <p class="reveal" style="text-align:center;margin-top:1.1rem;font-size:0.74rem;color:var(--stone);font-style:italic;">
+      Mais opções deliciosas estão disponíveis no nosso cardápio completo no local.
+    </p>
+  </div>
+</section>
+
+<!-- ============================================================
+     GALERIE / BILDSLIDER
+     Bilder: <img src="..."> – URLs der 6 Slides hier tauschen
+     Bildunterschriften: im JS-Block "captions"-Array unten ändern
+     Anzahl Slides: weitere .slide-Blöcke hinzufügen + captions erweitern
+     ============================================================ -->
+<section id="gallery">
+  <div class="container">
+    <div class="reveal">
+      <span class="section-label">L'atmosfera</span>
+      <h2 class="section-title">Um olhar dentro do <em>Sabella</em></h2>
+    </div>
+  </div>
+
+  <div class="gallery-layout reveal">
+
+    <!-- Slider-Außencontainer (Touch/Drag und Pointer-Events) -->
+    <div class="slider-outer" id="sliderWrap">
+      <div class="slider-track" id="sliderTrack">
+
+        <!-- Folie 1 – Bild-URL und alt-Text hier ändern -->
+        <div class="slide active">
+          <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=85" alt="Salão do restaurante">
+          <div class="slide-border"></div>
+          <span class="slide-num">01 / 06</span>
+        </div>
+        <!-- Folie 2 -->
+        <div class="slide">
+          <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&q=85" alt="Arrosto">
+          <div class="slide-border"></div>
+          <span class="slide-num">02 / 06</span>
+        </div>
+        <!-- Folie 3 -->
+        <div class="slide">
+          <img src="https://images.unsplash.com/photo-1551183053-bf91798d9b9d?w=800&q=85" alt="Segundos Pratos">
+          <div class="slide-border"></div>
+          <span class="slide-num">03 / 06</span>
+        </div>
+        <!-- Folie 4 -->
+        <div class="slide">
+          <img src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=800&q=85" alt="Da Cozinha">
+          <div class="slide-border"></div>
+          <span class="slide-num">04 / 06</span>
+        </div>
+        <!-- Folie 5 -->
+        <div class="slide">
+          <img src="https://images.unsplash.com/photo-1424847651672-bf20a4b0982b?w=800&q=85" alt="Os Vinhos">
+          <div class="slide-border"></div>
+          <span class="slide-num">05 / 06</span>
+        </div>
+        <!-- Folie 6 -->
+        <div class="slide">
+          <img src="https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=800&q=85" alt="Tiramisù">
+          <div class="slide-border"></div>
+          <span class="slide-num">06 / 06</span>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Info-Leiste unter dem Slider -->
+    <div class="gallery-meta">
+      <div class="gallery-meta-row">
+        <div class="gallery-meta-text">
+          <!-- Bildname und Untertitel – werden per JS aktualisiert -->
+          <span class="gallery-meta-name" id="slideName">L'Ambiente</span>
+          <span class="gallery-meta-sub" id="slideSub">Nosso salão</span>
+        </div>
+        <!-- Pfeil-Buttons: prevBtn / nextBtn – IDs in JS referenziert -->
+        <div class="slider-arrows">
+          <button class="slider-btn" id="prevBtn" aria-label="Imagem anterior">&#8592;</button>
+          <button class="slider-btn" id="nextBtn" aria-label="Próxima imagem">&#8594;</button>
+        </div>
+      </div>
+      <!-- Fortschrittsbalken und Dot-Navigation -->
+      <div class="slider-progress"><div class="slider-progress-bar" id="progressBar"></div></div>
+      <div class="slider-dots" id="sliderDots"></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================
+     KONTAKT / RESERVIERUNG
+     Telefonnummer: href="tel:+55..." und .contact-card-value anpassen
+     Adresse: href="https://maps.google.com/..." und Adresstext anpassen
+     Öffnungszeiten: <li>-Einträge in .hours-list anpassen
+     Geschlossene Tage: class="time hours-closed" für rote Farbe
+     ============================================================ -->
+<section id="reservation">
+  <div class="container">
+    <div class="reveal">
+      <!-- Kleine goldene Beschriftung – hier auf Italienisch belassen -->
+      <span class="section-label">Prenota un tavolo</span>
+      <h2 class="section-title">Venha nos <em>visitar</em></h2>
+    </div>
+
+    <div class="reservation-layout">
+      <!-- Linke Spalte: Einladungstext + Öffnungszeiten -->
+      <div class="reveal">
+        <p class="reservation-text">
+          Será um prazer recebê-lo. Para reservas, ocasiões especiais ou grupos a partir de 8 pessoas, entre em contato diretamente por telefone ou e-mail.
+        </p>
+        <!-- Öffnungszeiten-Liste – Tage und Uhrzeiten hier ändern -->
+        <ul class="hours-list">
+          <li><span class="day">Segunda-feira</span><span class="time">12:00 – 00:00</span></li>
+          <li><span class="day">Terça-feira</span><span class="time">12:00 – 00:00</span></li>
+          <li><span class="day">Quarta-feira</span><span class="time">12:00 – 00:00</span></li>
+          <li><span class="day">Quinta-feira</span><span class="time">12:00 – 00:00</span></li>
+          <li><span class="day">Sexta-feira</span><span class="time">12:00 – 00:00</span></li>
+          <li><span class="day">Sábado</span><span class="time">12:00 – 00:00</span></li>
+          <li><span class="day">Domingo</span><span class="time">12:00 – 00:00</span></li>
+        </ul>
+      </div>
+
+      <!-- Rechte Spalte: Kontaktkarten + CTA-Button -->
+      <div class="reveal">
+        <div class="contact-cards">
+          <!-- Telefonkarte – Nummer in href und im Text anpassen -->
+          <a href="tel:+5511265924199" class="contact-card">
+            <div class="contact-card-icon">✆</div>
+            <div><span class="contact-card-label">Telefone</span><span class="contact-card-value">+55 11 2659-2419</span></div>
+          </a>
+          <!-- Adresskarte – Google-Maps-Link und Adresstext anpassen -->
+          <a href="https://www.google.com/maps/place/Sabella+Antica+Rosticceria/@-23.5657742,-46.663584,17z/data=!3m1!4b1!4m6!3m5!1s0x94ce590f5178154b:0x4e95bd148121e6ed!8m2!3d-23.5657742!4d-46.663584!16s%2Fg%2F11lh6lct2w?entry=ttu&g_ep=EgoyMDI2MDQyOS4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener" class="contact-card">
+            <div class="contact-card-icon">⌖</div>
+            <div><span class="contact-card-label">Endereço</span><span class="contact-card-value">Alameda Lorena, 1204 - Jardins, São Paulo - SP, 01424-004, Brasil</span></div>
+          </a>
+        </div>
+        <!-- Großer Anruf-Button – href hier anpassen -->
+        <a href="tel:+5511265924199" class="cta-call">Ligar agora &amp; reservar</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FOOTER
+     Adresse und Copyright-Jahr hier anpassen
+     ============================================================ -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <span class="footer-logo">Sabella <span>Antica Rosticceria</span></span>
+      <p class="footer-sub" style="margin-top:0.35rem;">Alameda Lorena, 1204 - Jardins, São Paulo - SP, 01424-004, Brasil</p>
+    </div>
+    <p class="footer-copy">© 2026 Sabella Antica Rosticceria</p>
+  </div>
+</footer>
+
+<script>
+/* ============================================================
+   NAVIGATION – Scroll-Klasse
+   Fügt .scrolled zur <nav> hinzu wenn mehr als 50px gescrollt
+   ============================================================ */
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 50), {passive:true});
+
+/* ============================================================
+   HAMBURGER-MENÜ
+   .open-Klasse wechseln bei Klick auf Burger-Button
+   Alle .mob-link-Links schließen das Menü beim Klick
+   ============================================================ */
+const burger = document.getElementById('burger');
+const mobileMenu = document.getElementById('mobileMenu');
+burger.addEventListener('click', () => { burger.classList.toggle('open'); mobileMenu.classList.toggle('open'); });
+document.querySelectorAll('.mob-link').forEach(a => a.addEventListener('click', () => { burger.classList.remove('open'); mobileMenu.classList.remove('open'); }));
+
+/* ============================================================
+   SPEISEKARTEN-TABS
+   switchTab(id, btn):
+   - id  = letzter Teil der Tab-Sektion-ID (z.B. 'antipasti' → #tab-antipasti)
+   - btn = das geklickte Button-Element (bekommt .active-Klasse)
+   ============================================================ */
+function switchTab(id, btn) {
+  document.querySelectorAll('.menu-section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.menu-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  btn.classList.add('active');
+}
+
+/* ============================================================
+   BILDSLIDER
+   DURATION = Anzeigedauer jedes Bildes in Millisekunden (3000 = 3 Sek.)
+   captions  = Array mit {name, sub} für jede Folie – HIER ANPASSEN
+   Navigation: Pfeil-Buttons, Dots, Tastatur (← →), Touch-Drag
+   ============================================================ */
+const track = document.getElementById('sliderTrack');
+const slides = Array.from(track.querySelectorAll('.slide'));
+const dotsWrap = document.getElementById('sliderDots');
+const progressBar = document.getElementById('progressBar');
+const sliderWrap = document.getElementById('sliderWrap');
+const nameEl = document.getElementById('slideName');
+const subEl = document.getElementById('slideSub');
+const DURATION = 3000; /* Anzeigedauer pro Bild in ms – hier anpassen */
+let current = 0, autoTimer, dragStartX = 0, dragging = false;
+
+/* Bildunterschriften – müssen mit der Reihenfolge der .slide-Elemente übereinstimmen */
+const captions = [
+  { name: "L'Ambiente",         sub: 'Nosso salão' },               /* Folie 1 */
+  { name: 'Arrosto della Casa', sub: 'Fresco do forno a lenha' },    /* Folie 2 */
+  { name: 'Secondi Piatti',     sub: 'Secondo le stagioni' },        /* Folie 3 */
+  { name: 'Dalla Cucina',       sub: 'Preparado fresco diariamente' }, /* Folie 4 */
+  { name: 'I Vini',             sub: 'Seleção especial da Itália' }, /* Folie 5 */
+  { name: 'Tiramisù della Casa',sub: 'Il nostro dolce classico' },   /* Folie 6 */
+];
+
+/* Dot-Buttons automatisch erstellen (eine je Folie) */
+slides.forEach((_, i) => {
+  const d = document.createElement('button');
+  d.className = 'dot' + (i === 0 ? ' active' : '');
+  d.setAttribute('aria-label', 'Imagem ' + (i + 1));
+  d.addEventListener('click', () => goTo(i));
+  dotsWrap.appendChild(d);
+});
+
+/* Bilduntertitel mit Überblendanimation aktualisieren */
+function updateCaption(n) {
+  nameEl.style.opacity = '0'; subEl.style.opacity = '0';
+  setTimeout(() => {
+    nameEl.textContent = captions[n].name;
+    subEl.textContent = captions[n].sub;
+    nameEl.style.opacity = '1'; subEl.style.opacity = '1';
+  }, 280);
+}
+
+/* Zu einer bestimmten Folie wechseln */
+function goTo(n) {
+  slides[current].classList.remove('active');
+  dotsWrap.children[current].classList.remove('active');
+  current = ((n % slides.length) + slides.length) % slides.length;
+  slides[current].classList.add('active');
+  dotsWrap.children[current].classList.add('active');
+  const gap = 12;
+  const slideW = slides[0].offsetWidth + gap;
+  const offset = Math.max(0, current * slideW - slideW * 0.12);
+  track.style.transform = 'translateX(-' + offset + 'px)';
+  updateCaption(current);
+  startProgress();
+}
+
+/* Fortschrittsbalken animieren und Auto-Advance starten */
+function startProgress() {
+  clearTimeout(autoTimer);
+  progressBar.style.transition = 'none'; progressBar.style.width = '0%';
+  requestAnimationFrame(() => requestAnimationFrame(() => {
+    progressBar.style.transition = 'width ' + DURATION + 'ms linear';
+    progressBar.style.width = '100%';
+  }));
+  autoTimer = setTimeout(() => goTo(current + 1), DURATION);
+}
+
+/* Slider starten */
+startProgress();
+
+/* Pfeil-Button-Events */
+document.getElementById('nextBtn').addEventListener('click', () => goTo(current + 1));
+document.getElementById('prevBtn').addEventListener('click', () => goTo(current - 1));
+
+/* Touch/Drag-Unterstützung – Wischen nach links/rechts */
+sliderWrap.addEventListener('pointerdown', e => { dragging = true; dragStartX = e.clientX; sliderWrap.setPointerCapture(e.pointerId); }, {passive:true});
+sliderWrap.addEventListener('pointerup', e => {
+  if (!dragging) return; dragging = false;
+  const dx = e.clientX - dragStartX;
+  if (Math.abs(dx) > 40) dx < 0 ? goTo(current + 1) : goTo(current - 1); /* Mindest-Wischdistanz: 40px */
+}, {passive:true});
+
+/* Tastaturnavigation (Pfeiltasten ← →) */
+document.addEventListener('keydown', e => { if (e.key === 'ArrowRight') goTo(current+1); if (e.key === 'ArrowLeft') goTo(current-1); });
+
+/* ============================================================
+   REVEAL-ANIMATION
+   IntersectionObserver beobachtet alle .reveal-Elemente
+   Sobald 8% des Elements sichtbar ist, wird .visible hinzugefügt
+   Verzögerung zwischen mehreren Elementen: 70ms × Index
+   ============================================================ */
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => { if (e.isIntersecting) { setTimeout(() => e.target.classList.add('visible'), i * 70); observer.unobserve(e.target); } });
+}, {threshold: 0.08, rootMargin: '0px 0px -30px 0px'});
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+/* ============================================================
+   SMOOTH SCROLL
+   Alle internen Anker-Links (<a href="#...">)
+   Scrollt sanft mit 68px Offset (Höhe der Nav-Leiste)
+   ============================================================ */
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const t = document.querySelector(a.getAttribute('href'));
+    if (t) { e.preventDefault(); window.scrollTo({top: t.offsetTop - 68, behavior: 'smooth'}); }
+  });
+});
+</script>
+</body>
+</html>
