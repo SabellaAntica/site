@@ -4,10 +4,117 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sabella Antica Rosticceria</title>
+
+<!-- ============================================================
+     SEO: TITLE & META DESCRIPTION
+     Title: max. 60 Zeichen | Description: 120–160 Zeichen
+     Keywords: Restaurantname + Küche + Stadtteil + Stadt
+     ============================================================ -->
+<title>Sabella Antica Rosticceria – Cozinha Italiana em Jardins, São Paulo</title>
+<meta name="description" content="Restaurante italiano autêntico no coração dos Jardins, São Paulo. Massas frescas, pizzas artesanais e pratos da tradição italiana. Reserve sua mesa: +55 11 2659-2419.">
+<meta name="robots" content="index, follow">
+<meta name="author" content="Sabella Antica Rosticceria">
+
+<!-- ============================================================
+     SEO: HREFLANG – Sprache und Region explizit für Google
+     ============================================================ -->
+<link rel="alternate" hreflang="pt-BR" href="https://www.sabellaantica.com.br/">
+<link rel="alternate" hreflang="x-default" href="https://www.sabellaantica.com.br/">
+
+<!-- ============================================================
+     SEO: CANONICAL URL – verhindert Duplicate-Content-Probleme
+     URL hier auf die echte Domain anpassen!
+     ============================================================ -->
+<link rel="canonical" href="https://www.sabellaantica.com.br/">
+
+<!-- ============================================================
+     SEO: OPEN GRAPH – für Facebook, WhatsApp, LinkedIn Shares
+     og:image sollte 1200×630 px sein (hier Pfad anpassen)
+     ============================================================ -->
+<meta property="og:type" content="restaurant">
+<meta property="og:site_name" content="Sabella Antica Rosticceria">
+<meta property="og:title" content="Sabella Antica Rosticceria – Cozinha Italiana Autêntica em São Paulo">
+<meta property="og:description" content="Restaurante italiano no coração dos Jardins. Massas artesanais, pizzas napolitanas e os sabores da tradição italiana. Reservas: +55 11 2659-2419.">
+<meta property="og:url" content="https://www.sabellaantica.com.br/">
+<meta property="og:image" content="https://www.sabellaantica.com.br/Bilder/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="pt_BR">
+
+<!-- ============================================================
+     SEO: TWITTER CARD – für Twitter/X Shares
+     ============================================================ -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Sabella Antica Rosticceria – Cozinha Italiana em São Paulo">
+<meta name="twitter:description" content="Restaurante italiano autêntico nos Jardins, SP. Massas frescas, pizzas artesanais. Reserve sua mesa!">
+<meta name="twitter:image" content="https://www.sabellaantica.com.br/Bilder/og-image.jpg">
+
+<!-- ============================================================
+     SEO: STRUKTURIERTE DATEN (JSON-LD)
+     Ermöglicht Rich Results in Google: Sterne, Öffnungszeiten,
+     Adresse, Telefon, Menülink direkt in den Suchergebnissen
+     ============================================================ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Restaurant",
+  "name": "Sabella Antica Rosticceria",
+  "description": "Restaurante italiano autêntico no bairro Jardins, São Paulo. Massas artesanais, pizzas napolitanas e pratos da tradição italiana preparados com ingredientes selecionados.",
+  "url": "https://www.sabellaantica.com.br/",
+  "telephone": "+55-11-2659-2419",
+  "email": "contato@sabellaantica.com.br",
+  "image": [
+    "https://www.sabellaantica.com.br/Bilder/hero.png",
+    "https://www.sabellaantica.com.br/Bilder/og-image.jpg"
+  ],
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Alameda Lorena, 1204",
+    "addressLocality": "São Paulo",
+    "addressRegion": "SP",
+    "postalCode": "01424-004",
+    "addressCountry": "BR",
+    "addressLocality": "Jardins"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": -23.5657742,
+    "longitude": -46.663584
+  },
+  "hasMap": "https://www.google.com/maps/place/Sabella+Antica+Rosticceria/@-23.5657742,-46.663584,17z/",
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+      "opens": "12:00",
+      "closes": "00:00"
+    }
+  ],
+  "servesCuisine": ["Italian", "Italiana", "Pizza", "Pasta"],
+  "priceRange": "R$ 59 – R$ 159",
+  "currenciesAccepted": "BRL",
+  "paymentAccepted": "Cash, Credit Card",
+  "menu": "https://www.sabellaantica.com.br/#menu",
+  "reservations": "https://reservation.getin.app/MP9rBV1L",
+  "founder": {
+    "@type": "Person",
+    "name": "Ciro Sabella"
+  },
+  "sameAs": [
+    "https://www.instagram.com/sabellaantica/"
+  ]
+}
+</script>
+
+<!-- ============================================================
+     PERFORMANCE: PRELOAD – verbessert Core Web Vitals (LCP)
+     Hero-Bild und wichtigste Schrift vorab laden
+     ============================================================ -->
+<link rel="preload" as="image" href="Bilder/hero.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
 <!-- Google Fonts – Schriftarten werden extern geladen -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 
 <style>
@@ -107,7 +214,7 @@ nav.scrolled {
 /* Hintergrundbild – URL hier oder im HTML-Teil ändern */
 .hero-bg {
   position: absolute; inset: 0;
-  background: url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=1400&q=85') center/cover no-repeat;
+  background: url('Bilder/hero.png') center/cover no-repeat;
 }
 /* Dunkler Farbverlauf über das Bild */
 .hero-bg::after {
@@ -545,7 +652,7 @@ footer {
     <li><a href="#gallery">Galeria</a></li>         <!-- "Galerie" -->
     <li><a href="#reservation">Contato</a></li>     <!-- "Kontakt" -->
   </ul>
-  <a href="#reservation" class="nav-reserve">Reservar</a>   <!-- "Reservieren" -->
+  <a href="https://reservation.getin.app/MP9rBV1L?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAdGRleARmAjxleHRuA2FlbQIxMQBzcnRjBmFwcF9pZA8xMjQwMjQ1NzQyODc0MTQAAafGM0pahLQ7mgBAheCmxTjVToSbbp5x6kAAxRrnrx1LmiTD4-eL9tD4VBMxDg_aem_FIz2Y5TvStvMVcJ-nGqmXw" target="_blank" rel="noopener" class="nav-reserve">Reservar</a>   <!-- "Reservieren" -->
   <!-- Hamburger-Button für Mobile – JS schaltet .open um -->
   <button class="nav-burger" id="burger" aria-label="Abrir menu">
     <span></span><span></span><span></span>
@@ -561,7 +668,7 @@ footer {
   <a href="#menu" class="mob-link">Cardápio</a>
   <a href="#gallery" class="mob-link">Galeria</a>
   <a href="#reservation" class="mob-link">Contato</a>
-  <a href="#reservation" class="mob-link m-reserve">Reservar</a>
+  <a href="https://reservation.getin.app/MP9rBV1L?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAdGRleARmAjxleHRuA2FlbQIxMQBzcnRjBmFwcF9pZA8xMjQwMjQ1NzQyODc0MTQAAafGM0pahLQ7mgBAheCmxTjVToSbbp5x6kAAxRrnrx1LmiTD4-eL9tD4VBMxDg_aem_FIz2Y5TvStvMVcJ-nGqmXw" target="_blank" rel="noopener" class="mob-link m-reserve">Reservar</a>
 </div>
 
 <!-- ============================================================
@@ -581,7 +688,7 @@ footer {
     <!-- Zwei Buttons: primär (gold) und sekundär (Link mit Unterstrich) -->
     <div class="hero-cta">
       <a href="#menu" class="btn-primary">Ver Cardápio</a>
-      <a href="#reservation" class="btn-secondary">Reservar uma mesa</a>
+      <a href="https://reservation.getin.app/MP9rBV1L?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAdGRleARmAjxleHRuA2FlbQIxMQBzcnRjBmFwcF9pZA8xMjQwMjQ1NzQyODc0MTQAAafGM0pahLQ7mgBAheCmxTjVToSbbp5x6kAAxRrnrx1LmiTD4-eL9tD4VBMxDg_aem_FIz2Y5TvStvMVcJ-nGqmXw" target="_blank" rel="noopener" class="btn-secondary">Reservar uma mesa</a>
     </div>
   </div>
   <!-- Scroll-Hinweis unten rechts ("Scopri" = entdecke) -->
@@ -595,23 +702,25 @@ footer {
 <div id="specialties">
   <div class="marquee-track">
     <!-- Erste Kopie -->
-    <div class="marquee-item"><span class="marquee-dot"></span>Pollo alla Diavola</div>
-    <div class="marquee-item"><span class="marquee-dot"></span>Agnello al Forno</div>
-    <div class="marquee-item"><span class="marquee-dot"></span>Supplì di Riso</div>
-    <div class="marquee-item"><span class="marquee-dot"></span>Porchetta Romana</div>
-    <div class="marquee-item"><span class="marquee-dot"></span>Coda alla Vaccinara</div>
-    <div class="marquee-item"><span class="marquee-dot"></span>Abbacchio al Forno</div>
-    <div class="marquee-item"><span class="marquee-dot"></span>Saltimbocca alla Romana</div>
-    <div class="marquee-item"><span class="marquee-dot"></span>Tiramisù della Casa</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Cannoli alla Crema di Pistacchio</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Bistecca alla Sorrentina</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Rigatoni all'Amatriciana</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Pizza Margherita "La Vera"</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Polipo e Calamari Affogati</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Tiramisù</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Spaghetti ai Frutti di Mare</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Costata di Bue</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Panna Cotta</div>
     <!-- Zweite Kopie – für nahtlosen Loop notwendig -->
-    <div class="marquee-item"><span class="marquee-dot"></span>Pollo alla Diavola</div>
-    <div class="marquee-item"><span class="marquee-dot"></span>Agnello al Forno</div>
-    <div class="marquee-item"><span class="marquee-dot"></span>Supplì di Riso</div>
-    <div class="marquee-item"><span class="marquee-dot"></span>Porchetta Romana</div>
-    <div class="marquee-item"><span class="marquee-dot"></span>Coda alla Vaccinara</div>
-    <div class="marquee-item"><span class="marquee-dot"></span>Abbacchio al Forno</div>
-    <div class="marquee-item"><span class="marquee-dot"></span>Saltimbocca alla Romana</div>
-    <div class="marquee-item"><span class="marquee-dot"></span>Tiramisù della Casa</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Cannoli alla Crema di Pistacchio</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Bistecca alla Sorrentina</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Rigatoni all'Amatriciana</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Pizza Margherita "La Vera"</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Polipo e Calamari Affogati</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Tiramisù</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Spaghetti ai Frutti di Mare</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Costata di Bue</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Panna Cotta</div>
   </div>
 </div>
 
@@ -633,7 +742,7 @@ footer {
     <div class="about-layout">
       <!-- Bild links – Pfad anpassen falls nötig -->
       <div class="about-img-wrap reveal">
-        <img class="about-img" src="Bilder/ciro.jpeg" alt="Interior rústico do restaurante" loading="lazy">
+        <img class="about-img" src="Bilder/ciro.jpeg" alt="Chef Ciro Sabella – fundador do restaurante italiano Sabella Antica Rosticceria em São Paulo" loading="lazy">
         <span class="about-img-label">Ciro Sabella</span>
       </div>
       <!-- Textblock rechts – Absätze hier bearbeiten -->
@@ -670,65 +779,85 @@ footer {
     <!-- Tab-Leiste – Reihenfolge hier ändern -->
     <div class="menu-nav reveal">
       <button class="menu-tab active" onclick="switchTab('antipasti',this)">Antipasti</button>
-      <button class="menu-tab" onclick="switchTab('secondi',this)">Secondi Piatti</button>
-      <button class="menu-tab" onclick="switchTab('contorni',this)">Contorni</button>
-      <button class="menu-tab" onclick="switchTab('dolci',this)">Dolci &amp; Vinhos</button>
+      <button class="menu-tab" onclick="switchTab('pasta',this)">Pasta</button>
+      <button class="menu-tab" onclick="switchTab('carne',this)">Carne &amp; Pesce</button>
+      <button class="menu-tab" onclick="switchTab('pizza',this)">Pizza &amp; Focacce</button>
+      <button class="menu-tab" onclick="switchTab('dolci',this)">Dolci</button>
     </div>
 
     <!-- TAB 1: ANTIPASTI -->
     <div class="menu-section active" id="tab-antipasti">
-      <h3 class="menu-category-title">Antipasti della Casa</h3>
+      <h3 class="menu-category-title">Antipasti II Entrada dello Chef</h3>
       <div class="menu-items">
-        <!-- Gericht: Name | Beschreibung | Preis -->
-        <div class="menu-item"><div><div class="menu-item-name">Supplì al Telefono</div><div class="menu-item-desc">Bolinhos de arroz crocantes, ragù e pecorino derretido — receita da casa</div></div><span class="menu-item-price">8,50 €</span></div>
-        <div class="menu-item"><div><div class="menu-item-name">Bruschetta Mista</div><div class="menu-item-desc">Pão rústico torrado, tomates temperados, pasta de azeitona, Prosciutto di Parma</div></div><span class="menu-item-price">9,00 €</span></div>
-        <div class="menu-item"><div><div class="menu-item-name">Burrata con Pomodori Datterini</div><div class="menu-item-desc">Burrata cremosa da Puglia, tomates cereja, manjericão, azeite extravirgem</div></div><span class="menu-item-price">13,50 €</span></div>
-        <div class="menu-item"><div><div class="menu-item-name">Carpaccio di Manzo</div><div class="menu-item-desc">Filé de boi fatiado finamente, rúcula, Parmigiano Reggiano 36 meses, alcaparras</div></div><span class="menu-item-price">15,00 €</span></div>
-        <div class="menu-item"><div><div class="menu-item-name">Fritto Misto Romano</div><div class="menu-item-desc">Flores de abobrinha, corações de alcachofra e folhas de sálvia fritos</div></div><span class="menu-item-price">14,00 €</span></div>
-        <div class="menu-item"><div><div class="menu-item-name">Tagliere di Salumi e Formaggi</div><div class="menu-item-desc">Seleção de embutidos e queijos da estação, mel, nozes, mostarda de figo</div></div><span class="menu-item-price">22,00 €</span></div>
+        <div class="menu-item"><div><div class="menu-item-name">Bruschetta al Pomodoro, Mozzarella e Olive Verdi</div><div class="menu-item-desc">Bruschette com tomate, mussarela, azeitonas verdes e manjericão</div></div><span class="menu-item-price">R$ 59</span></div>
+        <div class="menu-item"><div><div class="menu-item-name">Insalata Caprese</div><div class="menu-item-desc">Mussarela de búfala, tomate, rúcula e manjericão</div></div><span class="menu-item-price">R$ 68</span></div>
+        <div class="menu-item"><div><div class="menu-item-name">Mortadella com Burrata e Pistacchi</div><div class="menu-item-desc">Mortadela italiana com burrata e creme de pistache</div></div><span class="menu-item-price">R$ 89</span></div>
+        <div class="menu-item"><div><div class="menu-item-name">Antipasto di Salumi</div><div class="menu-item-desc">Antipasto de embutidos italianos — Italian charcuterie and cold cuts</div></div><span class="menu-item-price">R$ 118</span></div>
+        <div class="menu-item"><div><div class="menu-item-name">Carpaccio Cipriani e Carciofi</div><div class="menu-item-desc">Carpaccio de filé mignon ao molho de mostarda com alcachofra marinada e lasca de parmesão</div></div><span class="menu-item-price">R$ 87</span></div>
+        <div class="menu-item"><div><div class="menu-item-name">Parmigiana di Melanzane</div><div class="menu-item-desc">Beringela ao molho de tomate e gratinada com parmesão</div></div><span class="menu-item-price">R$ 78</span></div>
+        <div class="menu-item"><div><div class="menu-item-name">Polenta com Ragu di Salsiccia</div><div class="menu-item-desc">Polenta com ragu de salsiccia — fried polenta in a sausage ragu sauce</div></div><span class="menu-item-price">R$ 69</span></div>
       </div>
     </div>
 
-    <!-- TAB 2: SECONDI PIATTI -->
-    <div class="menu-section" id="tab-secondi">
-      <h3 class="menu-category-title">I Nostri Arrosti</h3>
+    <!-- TAB 2: PASTA -->
+    <div class="menu-section" id="tab-pasta">
+      <h3 class="menu-category-title">Pasta dello Chef</h3>
       <div class="menu-items">
-        <div class="menu-item"><div><div class="menu-item-name">Porchetta Romana</div><div class="menu-item-desc">Lombo de leitão assado e crocante, ervas da Maremma, alho, funcho silvestre</div></div><span class="menu-item-price">19,50 €</span></div>
-        <div class="menu-item"><div><div class="menu-item-name">Abbacchio al Forno</div><div class="menu-item-desc">Cordeiro do Lácio assado no forno a lenha, alecrim, vinho branco, alho</div></div><span class="menu-item-price">24,00 €</span></div>
-        <div class="menu-item"><div><div class="menu-item-name">Pollo alla Diavola</div><div class="menu-item-desc">Frango grelhado aberto, pimenta-do-reino e pimenta — do jeito da vovó</div></div><span class="menu-item-price">18,00 €</span></div>
-        <div class="menu-item"><div><div class="menu-item-name">Saltimbocca alla Romana</div><div class="menu-item-desc">Escalope de vitela com presunto cru e sálvia fresca, manteiga ao vinho branco</div></div><span class="menu-item-price">23,50 €</span></div>
-        <div class="menu-item"><div><div class="menu-item-name">Coda alla Vaccinara</div><div class="menu-item-desc">Rabo de boi cozido à moda romana, aipo, tomate, chocolate amargo</div></div><span class="menu-item-price">21,00 €</span></div>
-        <div class="menu-item"><div><div class="menu-item-name">Branzino in Crosta di Sale</div><div class="menu-item-desc">Robalo da criação siciliana em crosta de sal marinho, manteiga de alcaparras, limão</div></div><span class="menu-item-price">26,50 €</span></div>
+        <div class="menu-item"><div><div class="menu-item-name">Tonnarelli Cacio Pepe al Tartufo Nero</div><div class="menu-item-desc">Tonnarelli com crème de parmesão de ovelha, pimenta do reino e trufa negra</div></div><span class="menu-item-price">R$ 159</span></div>
+        <div class="menu-item"><div><div class="menu-item-name">Gnocchi Gratinati alla Bolognese</div><div class="menu-item-desc">Nhoque de batata gratinado com ragu à bolonhesa</div></div><span class="menu-item-price">R$ 92</span></div>
+        <div class="menu-item"><div><div class="menu-item-name">Rigatoni all'Amatriciana</div><div class="menu-item-desc">Clássico de Roma — massa com molho de tomate, guanciale e queijo pecorino</div></div><span class="menu-item-price">R$ 87</span></div>
+        <div class="menu-item"><div><div class="menu-item-name">Fusilloni Molisani Gratinati con Salsiccia Funghi e Gorgonzola</div><div class="menu-item-desc">Fusilli gratinado com linguiça, cogumelos e molho de gorgonzola</div></div><span class="menu-item-price">R$ 96</span></div>
+        <div class="menu-item"><div><div class="menu-item-name">Fettuccine Alfredo</div><div class="menu-item-desc">O clássico de Roma — fettuccine ao molho de manteiga e parmesão</div></div><span class="menu-item-price">R$ 89</span></div>
+        <div class="menu-item"><div><div class="menu-item-name">Spaghetti ai Frutti di Mare</div><div class="menu-item-desc">Espaguete com fruto do mar</div></div><span class="menu-item-price">R$ 128</span></div>
+        <div class="menu-item"><div><div class="menu-item-name">Linguine al Polipo Olive e Bottarga</div><div class="menu-item-desc">Linguine ao alho e azeite com polvo, azeitonas da Liguria e bottarga</div></div><span class="menu-item-price">R$ 129</span></div>
       </div>
     </div>
 
-    <!-- TAB 3: CONTORNI -->
-    <div class="menu-section" id="tab-contorni">
-      <h3 class="menu-category-title">Contorni e Insalate</h3>
+    <!-- TAB 3: CARNE & PESCE -->
+    <div class="menu-section" id="tab-carne">
+      <h3 class="menu-category-title">Piatti di Carne dello Chef</h3>
       <div class="menu-items">
-        <div class="menu-item"><div><div class="menu-item-name">Patate al Forno</div><div class="menu-item-desc">Batatas assadas ao forno, alecrim, azeite de oliva, flor de sal</div></div><span class="menu-item-price">6,00 €</span></div>
-        <div class="menu-item"><div><div class="menu-item-name">Carciofi alla Romana</div><div class="menu-item-desc">Alcachofras à moda romana, hortelã, alho, salsinha</div></div><span class="menu-item-price">8,00 €</span></div>
-        <div class="menu-item"><div><div class="menu-item-name">Cicoria Ripassata</div><div class="menu-item-desc">Chicória amarga salteada com alho e peperoncino</div></div><span class="menu-item-price">7,00 €</span></div>
-        <div class="menu-item"><div><div class="menu-item-name">Insalata Mista della Stagione</div><div class="menu-item-desc">Salada mista de folhas da estação, molho da casa de balsamico branco</div></div><span class="menu-item-price">6,50 €</span></div>
-        <div class="menu-item"><div><div class="menu-item-name">Peperonata</div><div class="menu-item-desc">Refogado de pimentões coloridos, cebola, tomate e manjericão</div></div><span class="menu-item-price">7,50 €</span></div>
+        <div class="menu-item"><div><div class="menu-item-name">Tagliata di Manzo con Tonnarelli Cacio e Pepe</div><div class="menu-item-desc">Fatias de bife ancho com tonnarelli cacio e pepe — pecorino cheese and black pepper</div></div><span class="menu-item-price">R$ 159</span></div>
+        <div class="menu-item"><div><div class="menu-item-name">Bistecca alla Sorrentina</div><div class="menu-item-desc">Bife Black Angus com parma, mussarela e tomate, acompanhado de fettuccine na manteiga e creme de parmesão</div></div><span class="menu-item-price">R$ 139</span></div>
+        <div class="menu-item"><div><div class="menu-item-name">Risotto allo Zafferano con Ragu de Ossobuco</div><div class="menu-item-desc">Risotto de açafrão com ragu de ossobuco</div></div><span class="menu-item-price">R$ 128</span></div>
+        <div class="menu-item"><div><div class="menu-item-name">Polpette al Sugo</div><div class="menu-item-desc">Polpette ao sugo com nhoque na manteiga e sálvia</div></div><span class="menu-item-price">R$ 137</span></div>
+        <div class="menu-item"><div><div class="menu-item-name">Costata di Bue</div><div class="menu-item-desc">Costela bovina cozida em baixa temperatura, acompanhada com batatas rústicas</div></div><span class="menu-item-price">R$ 148</span></div>
+      </div>
+      <h3 class="menu-category-title">Piatti di Pesce dello Chef</h3>
+      <div class="menu-items">
+        <div class="menu-item"><div><div class="menu-item-name">Polipo e Calamari Affogati</div><div class="menu-item-desc">Ensopado de polvo e lula ao molho de tomate fresco, azeitonas e broschettas de alho</div></div><span class="menu-item-price">R$ 146</span></div>
+        <div class="menu-item"><div><div class="menu-item-name">Salmone al Sugo di Gamberi Limone e Bottarga</div><div class="menu-item-desc">Salmão grelhado ao molho de limão e bottarga, acompanhado de legumes sautée e creme de batatas com açafrão</div></div><span class="menu-item-price">R$ 148</span></div>
+        <div class="menu-item"><div><div class="menu-item-name">Baccalá con Olive Taggiasche, Patate e Peperoni</div><div class="menu-item-desc">Bacalhau ao forno com azeitonas da Liguria, batatas e pimentão</div></div><span class="menu-item-price">R$ 179</span></div>
       </div>
     </div>
 
-    <!-- TAB 4: DOLCI & VINHOS -->
+    <!-- TAB 4: PIZZA & FOCACCE -->
+    <div class="menu-section" id="tab-pizza">
+      <h3 class="menu-category-title">Pizza e Focacce</h3>
+      <div class="menu-items">
+        <div class="menu-item"><div><div class="menu-item-name">Focaccia al Sale Marino e Rosmarino</div><div class="menu-item-desc">Focaccia ao sal e alecrim</div></div><span class="menu-item-price">R$ 68</span></div>
+        <div class="menu-item"><div><div class="menu-item-name">Focaccia con Mortadella Burrata e Crema di Pistacchi</div><div class="menu-item-desc">Focaccia com mortadela, burrata e creme de pistache</div></div><span class="menu-item-price">R$ 135</span></div>
+        <div class="menu-item"><div><div class="menu-item-name">Pizza Margherita "La Vera"</div><div class="menu-item-desc">Pizza margherita tradicional com tomate, mussarela de búfala e manjericão</div></div><span class="menu-item-price">R$ 110</span></div>
+        <div class="menu-item"><div><div class="menu-item-name">Pizza Falcone</div><div class="menu-item-desc">Pizza de abobrinha, mussarela de búfala fresca e bottarga</div></div><span class="menu-item-price">R$ 125</span></div>
+        <div class="menu-item"><div><div class="menu-item-name">Pizza con Salame Piccante</div><div class="menu-item-desc">Pizza com salame picante</div></div><span class="menu-item-price">R$ 148</span></div>
+        <div class="menu-item"><div><div class="menu-item-name">Pizza di Parma, Rucola e Grana Padano</div><div class="menu-item-desc">Pizza de presunto parma, rúcola e queijo grana padano</div></div><span class="menu-item-price">R$ 155</span></div>
+        <div class="menu-item"><div><div class="menu-item-name">Pizza Marinara</div><div class="menu-item-desc">Pizza com tomate, mussarela e aliche</div></div><span class="menu-item-price">R$ 128</span></div>
+        <div class="menu-item"><div><div class="menu-item-name">Pizza aí Quattro Formaggi</div><div class="menu-item-desc">Pizza quatro queijos com trufas negras frescas</div></div><span class="menu-item-price">R$ 168</span></div>
+      </div>
+    </div>
+
+    <!-- TAB 5: DOLCI -->
     <div class="menu-section" id="tab-dolci">
-      <h3 class="menu-category-title">Dolci Tradizionali</h3>
+      <h3 class="menu-category-title">Dolci | Sobremesa</h3>
       <div class="menu-items">
-        <div class="menu-item"><div><div class="menu-item-name">Tiramisù della Casa</div><div class="menu-item-desc">O original — mascarpone, savoiardi, espresso da mistura napolitana</div></div><span class="menu-item-price">8,50 €</span></div>
-        <div class="menu-item"><div><div class="menu-item-name">Panna Cotta al Miele</div><div class="menu-item-desc">Creme suave, mel de castanha da Toscana, compota de figo</div></div><span class="menu-item-price">7,50 €</span></div>
-        <div class="menu-item"><div><div class="menu-item-name">Torta della Nonna</div><div class="menu-item-desc">Torta de massa podre com creme de baunilha, pinoli e açúcar de confeiteiro</div></div><span class="menu-item-price">8,00 €</span></div>
-        <div class="menu-item"><div><div class="menu-item-name">Gelato Artigianale</div><div class="menu-item-desc">Duas bolas de sorvete artesanal — sabores variados diariamente</div></div><span class="menu-item-price">6,00 €</span></div>
-      </div>
-      <!-- Weinauswahl -->
-      <h3 class="menu-category-title">Vini della Casa</h3>
-      <div class="menu-items">
-        <div class="menu-item"><div><div class="menu-item-name">Frascati Superiore DOC</div><div class="menu-item-desc">Fresco e mineral, ideal para peixes e antipasti</div></div><span class="menu-item-price">6,50 € / taça</span></div>
-        <div class="menu-item"><div><div class="menu-item-name">Montepulciano d'Abruzzo</div><div class="menu-item-desc">Encorpado, aromático, perfeito para carnes</div></div><span class="menu-item-price">7,00 € / taça</span></div>
-        <div class="menu-item"><div><div class="menu-item-name">Prosecco Valdobbiadene DOCG</div><div class="menu-item-desc">Borbulhante e delicado, do coração do Vêneto</div></div><span class="menu-item-price">7,50 € / taça</span></div>
+        <div class="menu-item"><div><div class="menu-item-name">Gelato di Crema alla Vaniglia con Frutti di Bosco</div><div class="menu-item-desc">Sorvete de creme com calda de frutas vermelhas e raspas de limão siciliano</div></div><span class="menu-item-price">R$ 49</span></div>
+        <div class="menu-item"><div><div class="menu-item-name">Pastiera di Grano</div><div class="menu-item-desc">Torta napolitana com grão de trigo, ricota e frutas cristalizadas</div></div><span class="menu-item-price">R$ 47</span></div>
+        <div class="menu-item"><div><div class="menu-item-name">Cannoli alla Crema di Pistacchio</div><div class="menu-item-desc">Cannoli recheados com creme pistache e nozes torradas</div></div><span class="menu-item-price">R$ 49</span></div>
+        <div class="menu-item"><div><div class="menu-item-name">Torta alla Caprese e Creme al Café</div><div class="menu-item-desc">Torta de chocolate amargo com amêndoa ao creme de café</div></div><span class="menu-item-price">R$ 56</span></div>
+        <div class="menu-item"><div><div class="menu-item-name">Panna Cotta</div><div class="menu-item-desc">Panna cotta com calda de laranja caramelizada</div></div><span class="menu-item-price">R$ 47</span></div>
+        <div class="menu-item"><div><div class="menu-item-name">Tiramisù</div><div class="menu-item-desc">Torta italiana com biscoito de champagne, creme de ricota, chocolate e café</div></div><span class="menu-item-price">R$ 48</span></div>
+        <div class="menu-item"><div><div class="menu-item-name">Il Dolce della Costa Amalfitana</div><div class="menu-item-desc">Biscoito de amêndoas com mousse de chocolate ao leite e limão siciliano, finalizado com calda de mirtilo</div></div><span class="menu-item-price">R$ 53</span></div>
+        <div class="menu-item"><div><div class="menu-item-name">Frutti di Stagione</div><div class="menu-item-desc">Frutas da estação</div></div><span class="menu-item-price">R$ 29</span></div>
       </div>
     </div>
 
@@ -763,39 +892,39 @@ footer {
     <div class="slider-outer" id="sliderWrap">
       <div class="slider-track" id="sliderTrack">
 
-        <!-- Folie 1 – Bild-URL und alt-Text hier ändern -->
+        <!-- Folie 1 – Vorspeisen -->
         <div class="slide active">
-          <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=85" alt="Salão do restaurante">
+          <img src="Bilder/Vorspeise1.jpeg" alt="Antipasti Misti – Entrada italiana no Sabella Antica Rosticceria, São Paulo">
           <div class="slide-border"></div>
           <span class="slide-num">01 / 06</span>
         </div>
-        <!-- Folie 2 -->
+        <!-- Folie 2 -- Pizza 1 -->
         <div class="slide">
-          <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&q=85" alt="Arrosto">
+          <img src="Bilder/Pizza1.jpeg" alt="Pizza della Casa artesanal – massa fresca com ingredientes italianos premium">
           <div class="slide-border"></div>
           <span class="slide-num">02 / 06</span>
         </div>
-        <!-- Folie 3 -->
+        <!-- Folie 3 -- Pizza 2 -->
         <div class="slide">
-          <img src="https://images.unsplash.com/photo-1551183053-bf91798d9b9d?w=800&q=85" alt="Segundos Pratos">
+          <img src="Bilder/Pizza2.jpeg" alt="Pizza Specialità – receita tradicional italiana do Chef Ciro Sabella">
           <div class="slide-border"></div>
           <span class="slide-num">03 / 06</span>
         </div>
-        <!-- Folie 4 -->
+        <!-- Folie 4 -- Pizza 3 -->
         <div class="slide">
-          <img src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=800&q=85" alt="Da Cozinha">
+          <img src="Bilder/Pizza3.jpeg" alt="Pizza Margherita clássica – toque autêntico napolitano em São Paulo">
           <div class="slide-border"></div>
           <span class="slide-num">04 / 06</span>
         </div>
-        <!-- Folie 5 -->
+        <!-- Folie 5 -- Vorspeise 2 -->
         <div class="slide">
-          <img src="https://images.unsplash.com/photo-1424847651672-bf20a4b0982b?w=800&q=85" alt="Os Vinhos">
+          <img src="Bilder/Vorspeise2.jpeg" alt="Antipasti Misti – seleção especial de entradas italianas no Sabella Jardins">
           <div class="slide-border"></div>
           <span class="slide-num">05 / 06</span>
         </div>
-        <!-- Folie 6 -->
+        <!-- Folie 6 -- Nachtisch -->
         <div class="slide">
-          <img src="https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=800&q=85" alt="Tiramisù">
+          <img src="Bilder/Nachtisch1.jpeg" alt="Dolce della Casa – sobremesa italiana tradicional, Tiramisù e Panna Cotta">
           <div class="slide-border"></div>
           <span class="slide-num">06 / 06</span>
         </div>
@@ -873,7 +1002,7 @@ footer {
           </a>
         </div>
         <!-- Großer Anruf-Button – href hier anpassen -->
-        <a href="tel:+5511265924199" class="cta-call">Ligar agora &amp; reservar</a>
+        <a href="https://reservation.getin.app/MP9rBV1L?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAdGRleARmAjxleHRuA2FlbQIxMQBzcnRjBmFwcF9pZA8xMjQwMjQ1NzQyODc0MTQAAafGM0pahLQ7mgBAheCmxTjVToSbbp5x6kAAxRrnrx1LmiTD4-eL9tD4VBMxDg_aem_FIz2Y5TvStvMVcJ-nGqmXw" target="_blank" rel="noopener" class="cta-call">Ligar agora &amp; reservar</a>
       </div>
     </div>
   </div>
@@ -942,12 +1071,12 @@ let current = 0, autoTimer, dragStartX = 0, dragging = false;
 
 /* Bildunterschriften – müssen mit der Reihenfolge der .slide-Elemente übereinstimmen */
 const captions = [
-  { name: "L'Ambiente",         sub: 'Nosso salão' },               /* Folie 1 */
-  { name: 'Arrosto della Casa', sub: 'Fresco do forno a lenha' },    /* Folie 2 */
-  { name: 'Secondi Piatti',     sub: 'Secondo le stagioni' },        /* Folie 3 */
-  { name: 'Dalla Cucina',       sub: 'Preparado fresco diariamente' }, /* Folie 4 */
-  { name: 'I Vini',             sub: 'Seleção especial da Itália' }, /* Folie 5 */
-  { name: 'Tiramisù della Casa',sub: 'Il nostro dolce classico' },   /* Folie 6 */
+  { name: 'Antipasti Misti',    sub: 'Entrada para o palato' },                    /* Folie 1 */
+  { name: 'Pizza della Casa',   sub: 'Massa fresca e ingredientes premium' },      /* Folie 2 */
+  { name: 'Pizza Specialità',   sub: 'Receita tradicional italiana' },             /* Folie 3 */
+  { name: 'Pizza Margherita',   sub: 'O clássico com toque autêntico' },           /* Folie 4 */
+  { name: 'Antipasti Preparati',sub: 'Seleção especial da culinária italiana' },   /* Folie 5 */
+  { name: 'Dolce della Casa',   sub: 'Doce tradizionale italiano' },               /* Folie 6 */
 ];
 
 /* Dot-Buttons automatisch erstellen (eine je Folie) */
