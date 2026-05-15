@@ -1,0 +1,6 @@
+# Alle Crawler willkommen
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://www.sabellarosticceria.com.br/sitemap.xml
